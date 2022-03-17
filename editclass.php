@@ -36,7 +36,7 @@
                             </div>
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="inputEmail" name="code" type="text" placeholder="Enter your registra" required />
-                                <label for="inputEmail">UniqueCode</label>
+                                <label for="inputEmail">Unique Code</label>
                             </div>                                                               
                             <div class="d-flex align-items-center justify-content-between mt-4 mb-0">                                                
                                 <button class="btn btn-primary" type="submit" name="submit">Submit</button>
