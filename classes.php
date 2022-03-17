@@ -1,5 +1,8 @@
 <?php 
-
+    session_start();
+    if (!isset($_SESSION['login'])){ 
+        header('location:login.php');
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +19,7 @@
                                 <div class="card bg-primary text-white mb-4">
                                     <div class="card-body">New</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">Add new Class</a>
+                                        <a class="small text-white stretched-link" href="editclass.php">Add new Class</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
