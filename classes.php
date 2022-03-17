@@ -1,5 +1,6 @@
 <?php 
     session_start();
+    require('db/dbconfig.php');
     if (!isset($_SESSION['login'])){ 
         header('location:login.php');
     }
@@ -28,78 +29,33 @@
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
-                                In Progress Tasks
+                                All Classes
                             </div>
                             <div class="card-body">
                                 <table id="datatablesSimple" class="table table-striped table-hover table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>Content type</th>
-                                            <th>Description</th>
-                                            <th>Created at</th>
-                                            <th>Submission</th>
-                                            <th>In progress?</th>
-                                            <th>Action</th>
+                                            <th>#</th>
+                                            <th>code</th>
+                                            <th>program</th> 
+                                            <th>Action</th>                                           
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>Discussion </td>
-                                            <td>Discussion</td>
-                                            <td>2011/04/25</td>
-                                            <td>-</td>
-                                            <td>yes</td>
-                                            <td>------</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Discussion </td>
-                                            <td>Discussion</td>
-                                            <td>2011/04/25</td>
-                                            <td>-</td>
-                                            <td>yes</td>
-                                            <td>------</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Discussion </td>
-                                            <td>Discussion</td>
-                                            <td>2011/04/25</td>
-                                            <td>-</td>
-                                            <td>yes</td>
-                                            <td>------</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Discussion </td>
-                                            <td>Discussion</td>
-                                            <td>2011/04/25</td>
-                                            <td>-</td>
-                                            <td>yes</td>
-                                            <td>------</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Discussion </td>
-                                            <td>Discussion</td>
-                                            <td>2011/04/25</td>
-                                            <td>-</td>
-                                            <td>yes</td>
-                                            <td>------</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Discussion </td>
-                                            <td>Discussion</td>
-                                            <td>2011/04/25</td>
-                                            <td>-</td>
-                                            <td>yes</td>
-                                            <td>------</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Discussion </td>
-                                            <td>Discussion</td>
-                                            <td>2011/04/25</td>
-                                            <td>-</td>
-                                            <td>yes</td>
-                                            <td>------</td>
-                                        </tr>
+                                        <?php
+                                            $query = "SELECT * FROM CLASSES";
+                                            $ret = mysqli_query($con, $query);
+                                            $cnt = 1;
+                                            while ($row = mysqli_fetch_array($ret)) {                                                                                            
+                                        ?>
                                         
+                                        <tr>
+                                            <td><?php echo $cnt;?></td>
+                                            <td><?php echo $row['code'];?></td>
+                                            <td><?php echo $row['program'];?></td>
+                                            <td><i class="fa fa-eye" ></i> view</td>                                            
+                                        </tr>
+                                        <?php $cnt=$cnt+1;}?>                                        
                                     </tbody>
                                 </table>
                             </div>
