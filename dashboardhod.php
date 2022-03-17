@@ -13,7 +13,7 @@
                                 <div class="card bg-primary text-white mb-4">
                                     <div class="card-body">Add Trainer</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">Add new trainer</a>
+                                        <a class="small text-white stretched-link" href="edittrainer.php">Add new trainer</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
@@ -22,7 +22,7 @@
                                 <div class="card bg-warning text-white mb-4">
                                     <div class="card-body">Classes</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">Manage classes</a>
+                                        <a class="small text-white stretched-link" href="classes.php">Manage classes</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
