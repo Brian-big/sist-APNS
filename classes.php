@@ -53,7 +53,11 @@
                                             <td><?php echo $cnt;?></td>
                                             <td><?php echo $row['code'];?></td>
                                             <td><?php echo $row['program'];?></td>
-                                            <td><i class="fa fa-eye" ></i> view</td>                                            
+                                            <!-- <td><i class="fa fa-eye" ></i> view</td> -->
+                                            <td>
+                                                <a href="class.php?code=<?php echo $row['code'];?>"><button type="button" class="btn btn-sm btn-primary"> <i class="fa fa-eye" ></i> View</button></a>
+                                                <a href="editclass.php?updatecode=<?php echo $row['code'];?>"><button type="submit" class="btn btn-sm btn-warning"> <i class="fa fa-edit" ></i> edit</button></a>                                                
+                                            </td>
                                         </tr>
                                         <?php $cnt=$cnt+1;}?>                                        
                                     </tbody>

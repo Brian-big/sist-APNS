@@ -25,19 +25,38 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">New Class</h1>                        
-                       
-                          
+                        <?php 
+                            if (isset($_GET['updatecode'])) {                                                    
+                                $code = $_GET['updatecode'];                                
+                                // $con = $conn;
+                                $query = "SELECT * FROM  classes WHERE `code` = '$code'";
+                                $ret = mysqli_query($con, $query);
+                                while ($row=mysqli_fetch_array($ret)) { ?>                                                                                     
+                                    <h1 class="mt-4">editing <?php echo $row['code'];?></h1>                                                                         
                             
-                        <form method="POST">
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="inputEmail" name="program" type="text" placeholder="Enter your registra" required />
-                                <label for="inputEmail">Program</label>
-                            </div>
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="inputEmail" name="code" type="text" placeholder="Enter your registra" required />
-                                <label for="inputEmail">Unique Code</label>
-                            </div>                                                               
+                                    <form method="POST">
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="inputEmail" name="program" type="text" placeholder="Enter your registra" required value="<?php  echo $row['program'];?>" />
+                                            <label for="inputEmail">Program</label>
+                                        </div>
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" id="inputEmail" name="code" type="text" placeholder="Enter your registra" required value="<?php  echo $row['code'];?>" />
+                                        <label for="inputEmail">Unique Code</label>
+                                    </div>       
+                                    <?php }}
+                            else { ?>
+                                <h1 class="mt-4">New Class</h1>                                                                                                     
+                                <form method="POST">
+                                <div class="form-floating mb-3">
+                                    <input class="form-control" id="inputEmail" name="program" type="text" placeholder="Enter your registra" required />
+                                    <label for="inputEmail">Program</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input class="form-control" id="inputEmail" name="code" type="text" placeholder="Enter your registra" required />
+                                    <label for="inputEmail">Unique Code</label>
+                                </div>
+                            <?php }
+                            ?>                                                        
                             <div class="d-flex align-items-center justify-content-between mt-4 mb-0">                                                
                                 <button class="btn btn-primary" type="submit" name="submit">Submit</button>
                             </div>
