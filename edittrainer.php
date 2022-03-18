@@ -12,11 +12,13 @@
         $department = $_POST['department'];
         
         
-        $query = "INSERT INTO `trainer` (`id`, `name`, `emp_no`, `id_no`, `telephone`, `department`) VALUES (NULL, '$name', '$emp_no', '$id_no', '$telephone', '$department')";
+        $query = "INSERT INTO `trainer` (`id`, `name`, `emp_no`, `id_no`, `telephone`, `department`) VALUES (NULL, '$name', '$emp_no', '$id_no', '$telephone', '$department')";        
+        $query2 = "INSERT INTO user (username, user_type, `password`) VALUES('$emp_no', '1', '$emp_no')";
         if($con->query($query)){
-            header("location:trainers.php");
-        }
-    
+            if ($con->query($query2)) {
+                header("location:trainers.php");
+            }
+        }                        
     }
 ?>
 <!DOCTYPE html>
