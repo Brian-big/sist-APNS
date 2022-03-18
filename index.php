@@ -60,7 +60,7 @@
                                             <td><?php echo $row['status'];?></td>
                                             <!-- <td><i class="fa fa-eye" ></i> view</td> -->
                                             <td>                                                
-                                                <a href="edittrainee.php?updatereg=<?php echo $row['reg_no'];?>"><button type="submit" class="btn btn-sm btn-warning"> <i class="fa fa-edit" ></i> submit</button></a>                                                
+                                                <a href="submit.php?taskid=<?php echo $row['id'];?>"><button type="submit" class="btn btn-sm btn-warning"> <i class="fa fa-edit" ></i> submit</button></a>                                                
                                             </td>
                                         </tr>
                                         <?php $cnt=$cnt+1;}?>                                        
