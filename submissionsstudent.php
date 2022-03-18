@@ -15,17 +15,7 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Student's Dashboard</h1>
-                        <?php
-                            $regno = $_SESSION['regno'];
-                            $query = "SELECT `name` FROM student WHERE `reg_no` = '$regno'";
-                            $ret = mysqli_query($con, $query);                            
-                            while ($row = mysqli_fetch_array($ret)) {                                                                                            
-                            ?>
-                            <ol class="breadcrumb mb-4">
-                                <li class=""><?php echo $row['name'];?></li>
-                            </ol>
-                        <?php }?>                                                      
+                        <h1 class="mt-4">My submissions</h1>                                                                          
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
@@ -45,9 +35,11 @@
                                     </thead>
                                     <tbody>
                                         <?php
+                                            $regno = $_SESSION['regno'];
                                             $class = $_SESSION['class'];
+                                            $sql = "SELECT * FROM `submission`, `task`, `student`, `trainer` WHERE `submission`.`taskid` = `task`.`id` AND `submission`.`reg_no` = '$regno' AND `task`.`trainer` = `trainer`.`emp_no` AND `submission`.`reg_no` = `student`.`reg_no`;";
                                             $query = "SELECT * FROM task WHERE `class` = '$class'";
-                                            $ret = mysqli_query($con, $query);
+                                            $ret = mysqli_query($con, $sql);
                                             $cnt = 1;
                                             while ($row = mysqli_fetch_array($ret)) {                                                                                            
                                         ?>
@@ -60,7 +52,7 @@
                                             <td><?php echo $row['status'];?></td>
                                             <!-- <td><i class="fa fa-eye" ></i> view</td> -->
                                             <td>                                                
-                                                <a href="edittrainee.php?updatereg=<?php echo $row['reg_no'];?>"><button type="submit" class="btn btn-sm btn-warning"> <i class="fa fa-edit" ></i> submit</button></a>                                                
+                                                <a href="edittrainee.php?updatereg=<?php echo $row['reg_no'];?>"><button type="submit" class="btn btn-sm btn-warning"> <i class="fa fa-eye" ></i> view</button></a>                                                
                                             </td>
                                         </tr>
                                         <?php $cnt=$cnt+1;}?>                                        
