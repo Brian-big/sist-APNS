@@ -9,36 +9,36 @@
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $regno = $_SESSION['regno'];
         $comment = $_POST['comment'];
-        $taskid = $_POST['id'];
+        $taskid = $_GET['taskid'];
         $sql = "INSERT INTO `submission` (`id`, `taskid`, `reg_no`, `time`, `comment`) VALUES (NULL, '$taskid', '$regno', current_timestamp(), '$comment');";
         // $query = "INSERT INTO `task` ( `type`, `urgency`, `class`, `decsr`, `trainer`) VALUES ('$type', '$urgency', '$class', '$descr', '$emp_no')";                
         if($con->query($sql)){
             $recipients = array();
             $recipientsQuery = "select `telephone` from `trainer`, `task`, submission WHERE `task`.`trainer` = `trainer`.`emp_no` AND `task`.`id` = `submission`.`taskid` AND `task`.`id` = '$taskid'";
             $res = mysqli_query($con, $recipientsQuery) or die(mysql_error());
-            while ($row = mysqli_fetch_assoc($res)) {
-                $recipients[] = $row["telephone"];        
-            }
-            $recipients = implode(" ", $recipients);
-            // echo $recipients;
-            // 
-            $message = "New assignment submitted";
-            $from = "sandbox";
-        try {
-            $result = $sms->send([
-                'to'      => $recipients,
-                'message' => $message
-            // 'from'    => $from
-            ]);
 
-            print_r($result);
-        } catch (Exception $e) {
-    echo "Error: ".$e->getMessage();
+            $message = "New assignment added";
+            $from = "SIST Academic progress";
+
+            while ($row = mysqli_fetch_assoc($res)) {
+                $recipient = $row["telephone"];                 
+                try {
+                    $result = $sms->send([
+                    'to'      => $recipient,
+                    'message' => $message,
+                    // 'from'    => $from
+                    ]);
+                    print_r($result);
+                } catch (Exception $e) { 
+                    echo "Error: ".$e->getMessage();     
+                }
+            }
+            header("location:index.php");   
+        }    
+           
 }
 // $AT.sendMessage($recipients, $message);
-            header("location:index.php");
-        }
-    }
+     
 ?>
 <!DOCTYPE html>
 <html lang="en">

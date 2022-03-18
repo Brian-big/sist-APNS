@@ -41,7 +41,7 @@
                                 <div class="card bg-secondary text-white mb-4">
                                     <div class="card-body">Submissions</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Submissions</a>
+                                        <a class="small text-white stretched-link" href="submissions.php">View Submissions</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
@@ -57,19 +57,18 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Class</th>
+                                            <th>class</th>
                                             <th>Type</th> 
                                             <th>Urgency</th>
                                             <th>Description</th>
-                                            <th>Status</th>
-                                            <th>Comment</th>
+                                            <th>Status</th>                                            
                                             <th>Action</th>                                           
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
                                             $empno = $_SESSION['empno'];
-                                            $query = "SELECT * FROM `submission`, `task`, `student`, `trainer` WHERE `submission`.`taskid` = `task`.`id` AND `task`.`trainer` = '$empno' AND `task`.`trainer` = `trainer`.`emp_no` AND `submission`.`reg_no` = `student`.`reg_no`;";
+                                            $query = "SELECT * FROM `task` WHERE `task`.`trainer` = '$empno'";
                                             $ret = mysqli_query($con, $query);
                                             $cnt = 1;
                                             while ($row = mysqli_fetch_array($ret)) {                                                                                            
@@ -82,7 +81,6 @@
                                             <td><?php echo $row['urgency'];?></td>
                                             <td><?php echo $row['descr'];?></td>
                                             <td><?php echo $row['status'];?></td>
-                                            <td><?php echo $row['comment'];?></td>
                                             <!-- <td><i class="fa fa-eye" ></i> view</td> -->
                                             <td>                                                
                                                 <a href="edittrainee.php?updatereg=<?php echo $row['reg_no'];?>"><button type="submit" class="btn btn-sm btn-warning"> <i class="fa fa-edit" ></i> update</button></a>

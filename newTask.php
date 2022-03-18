@@ -15,32 +15,31 @@
         $sql = "INSERT INTO `task` ( `type`, `urgency`, `class`, `descr`, `trainer`) VALUES ( '$type', '$urgency', '$class', '$descr', '$emp_no')";
         // $query = "INSERT INTO `task` ( `type`, `urgency`, `class`, `decsr`, `trainer`) VALUES ('$type', '$urgency', '$class', '$descr', '$emp_no')";                
         if($con->query($sql)){
-            $recipients = array();
+            
             $recipientsQuery = "select `telephone` from `student` WHERE `class` = '$class'";
             $res = mysqli_query($con, $recipientsQuery) or die(mysql_error());
-            while ($row = mysqli_fetch_assoc($res)) {
-                $recipients[] = $row["telephone"];        
-            }
-            $recipients = implode(" ", $recipients);
-            // echo $recipients;
-            // 
+            
             $message = "New assignment added";
-            $from = "sandbox";
-        try {
-            $result = $sms->send([
-                'to'      => $recipients,
-                'message' => $message
-            // 'from'    => $from
-            ]);
+            $from = "SIST Academic progress";
 
-            print_r($result);
-        } catch (Exception $e) {
-    echo "Error: ".$e->getMessage();
-}
-// $AT.sendMessage($recipients, $message);
+            while ($row = mysqli_fetch_assoc($res)) {
+                $recipient = $row["telephone"];                 
+                try {
+                    $result = $sms->send([
+                    'to'      => $recipient,
+                    'message' => $message,
+                    // 'from'    => $from
+                    ]);
+                    print_r($result);
+                } catch (Exception $e) { 
+                    echo "Error: ".$e->getMessage();     
+                }
+            }
             header("location:dashboard.php");
-        }
-    }
+        }    
+    
+}
+// $AT.sendMessage($recipients, $message);     
 ?>
 <!DOCTYPE html>
 <html lang="en">
