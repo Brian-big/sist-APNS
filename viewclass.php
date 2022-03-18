@@ -92,8 +92,7 @@
                                             <td>-</td>
                                             <td>yes</td>
                                             <td>------</td>
-                                        </tr>
-                                        
+                                        </tr>                                        
                                     </tbody>
                                 </table>
                             </div>
