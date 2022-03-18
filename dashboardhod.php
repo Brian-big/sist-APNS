@@ -1,3 +1,10 @@
+<?php  
+    session_start();
+    require('db/dbconfig.php');    
+    if (!isset($_SESSION['login'])){ 
+        header('location:login.php');
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
     <?php include "./includes/header.html" ?>
@@ -19,108 +26,55 @@
                                 </div>
                             </div>
                             <div class="col-xl-3 col-md-6">
-                                <div class="card bg-warning text-white mb-4">
+                                <div class="card bg-secondary text-white mb-4">
                                     <div class="card-body">Classes</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
                                         <a class="small text-white stretched-link" href="classes.php">Manage classes</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-success text-white mb-4">
-                                    <div class="card-body">Student</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">Manage Students</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-danger text-white mb-4">
-                                    <div class="card-body">Cancelled</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>        
+                            </div>     
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
                                 In Progress Tasks
                             </div>
                             <div class="card-body">
-                                <table id="datatablesSimple" class="table table-striped table-hover table-bordered">
+                            <table id="datatablesSimple" class="table table-striped table-hover table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>Content type</th>
+                                            <th>#</th>
+                                            <th>Trainer</th>
+                                            <th>Class</th>
+                                            <th>Type</th> 
+                                            <th>Urgency</th>
                                             <th>Description</th>
-                                            <th>Created at</th>
-                                            <th>Submission</th>
-                                            <th>In progress?</th>
-                                            <th>Action</th>
+                                            <th>Status</th>
+                                            <th>Action</th>                                           
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>Discussion </td>
-                                            <td>Discussion</td>
-                                            <td>2011/04/25</td>
-                                            <td>-</td>
-                                            <td>yes</td>
-                                            <td>------</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Discussion </td>
-                                            <td>Discussion</td>
-                                            <td>2011/04/25</td>
-                                            <td>-</td>
-                                            <td>yes</td>
-                                            <td>------</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Discussion </td>
-                                            <td>Discussion</td>
-                                            <td>2011/04/25</td>
-                                            <td>-</td>
-                                            <td>yes</td>
-                                            <td>------</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Discussion </td>
-                                            <td>Discussion</td>
-                                            <td>2011/04/25</td>
-                                            <td>-</td>
-                                            <td>yes</td>
-                                            <td>------</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Discussion </td>
-                                            <td>Discussion</td>
-                                            <td>2011/04/25</td>
-                                            <td>-</td>
-                                            <td>yes</td>
-                                            <td>------</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Discussion </td>
-                                            <td>Discussion</td>
-                                            <td>2011/04/25</td>
-                                            <td>-</td>
-                                            <td>yes</td>
-                                            <td>------</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Discussion </td>
-                                            <td>Discussion</td>
-                                            <td>2011/04/25</td>
-                                            <td>-</td>
-                                            <td>yes</td>
-                                            <td>------</td>
-                                        </tr>
+                                        <?php                                            
+                                            $query = "SELECT * FROM task WHERE 1";
+                                            $ret = mysqli_query($con, $query);
+                                            $cnt = 1;
+                                            while ($row = mysqli_fetch_array($ret)) {                                                                                            
+                                        ?>
                                         
+                                        <tr>
+                                            <td><?php echo $cnt;?></td>
+                                            <td><?php echo $row['trainer'];?></td>
+                                            <td><?php echo $row['class'];?></td>
+                                            <td><?php echo $row['type'];?></td>
+                                            <td><?php echo $row['urgency'];?></td>
+                                            <td><?php echo $row['descr'];?></td>
+                                            <td><?php echo $row['status'];?></td>
+                                            <!-- <td><i class="fa fa-eye" ></i> view</td> -->
+                                            <td>                                                                                                
+                                                <a href="edittrainee.php?updatereg=<?php echo $row['reg_no'];?>"><button type="submit" class="btn btn-sm btn-secondary"> <i class="fa fa-eye" ></i> view</button></a>
+                                            </td>
+                                        </tr>
+                                        <?php $cnt=$cnt+1;}?>                                        
                                     </tbody>
                                 </table>
                             </div>
