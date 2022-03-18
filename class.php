@@ -27,7 +27,7 @@
                                         <div class="card bg-primary text-white mb-4">
                                             <div class="card-body">Students</div>
                                             <div class="card-footer d-flex align-items-center justify-content-between">
-                                            <a class="small text-white stretched-link" href="editclass.php">Add new student</a>
+                                            <a class="small text-white stretched-link" href="edittrainee.php?updateclass=<?php echo $row['code'];?>">Add new student</a>
                                             <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                         </div>
                                         </div>    
@@ -53,7 +53,8 @@
                                     </thead>
                                     <tbody>
                                         <?php
-                                            $query = "SELECT * FROM student";
+                                            $code = $_GET['code'];
+                                            $query = "SELECT * FROM student WHERE `class` = '$code'";
                                             $ret = mysqli_query($con, $query);
                                             $cnt = 1;
                                             while ($row = mysqli_fetch_array($ret)) {                                                                                            
@@ -66,7 +67,7 @@
                                             <td><?php echo $row['telephone'];?></td>
                                             <!-- <td><i class="fa fa-eye" ></i> view</td> -->
                                             <td>                                                
-                                                <a href="editclass.php?updatecode=<?php echo $row['reg_no'];?>"><button type="submit" class="btn btn-sm btn-warning"> <i class="fa fa-edit" ></i> edit</button></a>                                                
+                                                <a href="edittrainee.php?updatereg=<?php echo $row['reg_no'];?>"><button type="submit" class="btn btn-sm btn-warning"> <i class="fa fa-edit" ></i> edit</button></a>                                                
                                             </td>
                                         </tr>
                                         <?php $cnt=$cnt+1;}?>                                        
