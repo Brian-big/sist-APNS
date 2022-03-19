@@ -54,9 +54,8 @@
                                             <td><?php echo $row['status'];?></td>
                                             <td><?php echo $row['comment'];?></td>
                                             <!-- <td><i class="fa fa-eye" ></i> view</td> -->
-                                            <td>                                                
-                                                <a href="edittrainee.php?updatereg=<?php echo $row['reg_no'];?>"><button type="submit" class="btn btn-sm btn-warning"> <i class="fa fa-edit" ></i> update</button></a>
-                                                <a href="edittrainee.php?updatereg=<?php echo $row['reg_no'];?>"><button type="submit" class="btn btn-sm btn-secondary"> <i class="fa fa-eye" ></i> view</button></a>
+                                            <td>                                                                                                
+                                                <a href="viewsubmission.php?id=<?php echo $row['sid'];?>"><button type="submit" class="btn btn-sm btn-primary"> <i class="fa fa-eye" ></i> view</button></a>
                                             </td>
                                         </tr>
                                         <?php $cnt=$cnt+1;}?>                                        
