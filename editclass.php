@@ -7,9 +7,10 @@
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $program = $_POST['program'];
         $code = $_POST['code'];
+        $dept = $_POST['dept'];
         
         // $con = $conn;
-        $query = "INSERT INTO classes(code, program) values('$code', '$program')";
+        $query = "INSERT INTO classes(code, program, dept) values('$code', '$program', '$dept')";
         if($con->query($query)){
             header("location:classes.php");
         }
@@ -54,6 +55,18 @@
                                 <div class="form-floating mb-3">
                                     <input class="form-control" id="inputEmail" name="code" type="text" placeholder="Enter your registra" required />
                                     <label for="inputEmail">Unique Code</label>
+                                </div>
+                                <div class="form-group">
+                                    <h6>Department *</h6>                                    
+								<select class="form-control" name="dept" id="dept" required>
+									<?php 
+                                        $class = $_GET['updateclass'];                                                                                                                          
+                                        $query=mysqli_query($con,"SELECT * from department");                                               										
+                                        while($row=mysqli_fetch_array($query))
+                                        {?>    
+                                            <option value="<?php echo $row['code'];?>"><?php echo $row['code'];?> --- <?php echo $row['name'];?></option>                                            
+                                        <?php }?>                                                                                     											                  					
+								</select>
                                 </div>
                             <?php }
                             ?>                                                        
