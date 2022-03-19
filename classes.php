@@ -18,9 +18,19 @@
                         <div class="row">
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-primary text-white mb-4">
-                                    <div class="card-body">New</div>
+                                    <div class="card-body"><i class="fa fa-bookmark" aria-hidden="true"></i></div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
                                         <a class="small text-white stretched-link" href="editclass.php">Add new Class</a>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card bg-secondary text-white mb-4">
+                                    <div class="card-body"><i class="fas fa-book-dead"></i></div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-white stretched-link" href="editdepartment.php">Add new department</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
@@ -58,6 +68,43 @@
                                                 <a href="class.php?code=<?php echo $row['code'];?>"><button type="button" class="btn btn-sm btn-primary"> <i class="fa fa-eye" ></i> View</button></a>
                                                 <a href="editclass.php?updatecode=<?php echo $row['code'];?>"><button type="submit" class="btn btn-sm btn-warning"> <i class="fa fa-edit" ></i> edit</button></a>                                                
                                             </td>
+                                        </tr>
+                                        <?php $cnt=$cnt+1;}?>                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                All Departments
+                            </div>
+                            <div class="card-body">
+                                <table id="datatablesSimple" class="table table-striped table-hover table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>name</th>
+                                            <th>abreviation</th> 
+                                            <!-- <th>Action</th>                                            -->
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                            $query = "SELECT * FROM department";
+                                            $ret = mysqli_query($con, $query);
+                                            $cnt = 1;
+                                            while ($row = mysqli_fetch_array($ret)) {                                                                                            
+                                        ?>
+                                        
+                                        <tr>
+                                            <td><?php echo $cnt;?></td>
+                                            <td><?php echo $row['name'];?></td>
+                                            <td><?php echo $row['code'];?></td>
+                                            <!-- <td><i class="fa fa-eye" ></i> view</td> -->
+                                            <!-- <td>
+                                                <a href="class.php?code=<?php echo $row['code'];?>"><button type="button" class="btn btn-sm btn-primary"> <i class="fa fa-eye" ></i> View</button></a>                                                
+                                            </td> -->
                                         </tr>
                                         <?php $cnt=$cnt+1;}?>                                        
                                     </tbody>

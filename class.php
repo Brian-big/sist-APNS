@@ -89,7 +89,7 @@
                         </div>
                         <div class="card mb-4">
                             <div class="card-header">
-                                <i class="fas fa-table me-1"></i><span>Students enrolled</span>                                
+                                <i class="fas fa-table me-1"></i><span>Subjects</span>                                
                                 <!-- Students enrolled -->
                             </div>
                             <div class="card-body">

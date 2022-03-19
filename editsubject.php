@@ -11,11 +11,8 @@
         $trainer = $_POST['trainer'];
         
         $query = "INSERT INTO `subject` (`code`, `class`, `title`, `trainer`) values('$code', '$class', '$title', '$trainer')";
-        if($con->query($query)){
-            $query2 = "INSERT INTO user (username, user_type, `password`) VALUES('$reg', '0', '$reg')";
-            if ($con->query($query2)) {
-                header("location:class.php?code=$class");                
-            }                
+        if($con->query($query)){           
+            header("location:class.php?code=$class");                                            
             
         }                        
     
