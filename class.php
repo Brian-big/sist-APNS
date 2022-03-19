@@ -86,6 +86,46 @@
                                     </tbody>
                                 </table>
                             </div>
+                        </div>
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i><span>Students enrolled</span>                                
+                                <!-- Students enrolled -->
+                            </div>
+                            <div class="card-body">
+                                <table id="datatablesSimple" class="table table-striped table-hover table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Code</th>
+                                            <th>Title</th> 
+                                            <th>Trainer</th>
+                                            <!-- <th>Action</th>                                            -->
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                            $code = $_GET['code'];
+                                            $query = "SELECT * FROM `subject` WHERE `class` = '$code'";
+                                            $ret = mysqli_query($con, $query);
+                                            $cnt = 1;
+                                            while ($row = mysqli_fetch_array($ret)) {                                                                                            
+                                        ?>
+                                        
+                                        <tr>
+                                            <td><?php echo $cnt;?></td>
+                                            <td><?php echo $row['code'];?></td>
+                                            <td><?php echo $row['title'];?></td>
+                                            <td><?php echo $row['trainer'];?></td>
+                                            <!-- <td><i class="fa fa-eye" ></i> view</td> -->
+                                            <!-- <td>                                                
+                                                <a href="edittrainee.php?updatereg=<?php echo $row['reg_no'];?>"><button type="submit" class="btn btn-sm btn-warning"> <i class="fa fa-edit" ></i> edit</button></a>                                                
+                                            </td> -->
+                                        </tr>
+                                        <?php $cnt=$cnt+1;}?>                                        
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>                                                    
                     </div>
                 </main>
