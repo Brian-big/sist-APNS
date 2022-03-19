@@ -1,3 +1,11 @@
+<?php  
+    session_start();
+    require('db/dbconfig.php');
+    require('db/class.php');
+    if (!isset($_SESSION['login'])){ 
+        header('location:login.php');
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
     <?php include "./includes/header.html" ?>
