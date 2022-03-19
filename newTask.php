@@ -11,31 +11,37 @@
         $descr = $_POST['descr'];
         $type = $_POST['type'];
         $urgency = $_POST['urgency'];
-        $class = $_POST['class'];
-        $sql = "INSERT INTO `task` ( `type`, `urgency`, `class`, `descr`, `trainer`) VALUES ( '$type', '$urgency', '$class', '$descr', '$emp_no')";
+        $subject = $_POST['subject'];
+        $sql = "INSERT INTO `task` ( `type`, `urgency`, `subject`, `descr`, `trainer`) VALUES ( '$type', '$urgency', '$subject', '$descr', '$emp_no')";
         // $query = "INSERT INTO `task` ( `type`, `urgency`, `class`, `decsr`, `trainer`) VALUES ('$type', '$urgency', '$class', '$descr', '$emp_no')";                
         if($con->query($sql)){
+            $classquery = "SELECT `class` FROM `subject` WHERE `code` = '$subject'";
             
-            $recipientsQuery = "select `telephone` from `student` WHERE `class` = '$class'";
-            $res = mysqli_query($con, $recipientsQuery) or die(mysql_error());
-            
-            $message = "New assignment added";
-            $from = "SIST Academic progress";
-
-            while ($row = mysqli_fetch_assoc($res)) {
-                $recipient = $row["telephone"];                 
-                try {
-                    $result = $sms->send([
-                    'to'      => $recipient,
-                    'message' => $message,
-                    // 'from'    => $from
-                    ]);
-                    print_r($result);
-                } catch (Exception $e) { 
-                    echo "Error: ".$e->getMessage();     
+            $res1 = mysqli_query($con, $classquery);            
+            while ($row = mysqli_fetch_assoc($res1)){
+                $class = $row['class'];
+                $recipientsQuery = "select `telephone` from `student` WHERE `class` = '$class'";
+                $res = mysqli_query($con, $recipientsQuery) or die(mysql_error());
+                
+                $message = $subject. ': New '.$type. ' added. Description: '.$descr. ' submission: ' .$urgency;
+                $from = "SIST Academic progress";
+    
+                while ($row = mysqli_fetch_assoc($res)) {
+                    $recipient = $row["telephone"];                 
+                    try {
+                        $result = $sms->send([
+                        'to'      => $recipient,
+                        'message' => $message,
+                        // 'from'    => $from
+                        ]);
+                        print_r($result);
+                    } catch (Exception $e) { 
+                        echo "Error: ".$e->getMessage();     
+                    }
                 }
+                header("location:dashboard.php");
             }
-            header("location:dashboard.php");
+           
         }    
     
 }
@@ -69,11 +75,11 @@
                             </div>
                             <br>
                             <div class="form-group">
-								<label>Class *</label>
-								<select class="form-control" name="class" id="class" required>
+								<label>Subject *</label>
+								<select class="form-control" name="subject" id="class" required>
 									<?php 
-                                        $dept = $_SESSION['dept'];                                                                                                                          
-                                        $query=mysqli_query($con,"SELECT * from classes WHERE `dept` = '$dept'");                                               
+                                        $trainer = $_SESSION['empno'];                                                                                                                          
+                                        $query=mysqli_query($con,"SELECT * from `subject` WHERE `trainer` = '$trainer'");                                               
 										while($row=mysqli_fetch_array($query))
 											{?>    
                                             <option value="<?php echo $row['code'];?>"><?php echo $row['code'];?></option>

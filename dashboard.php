@@ -57,7 +57,7 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>class</th>
+                                            <th>Subject</th>
                                             <th>Type</th> 
                                             <th>Urgency</th>
                                             <th>Description</th>
@@ -76,7 +76,7 @@
                                         
                                         <tr>
                                             <td><?php echo $cnt;?></td>
-                                            <td><?php echo $row['class'];?></td>
+                                            <td><?php echo $row['subject'];?></td>
                                             <td><?php echo $row['type'];?></td>
                                             <td><?php echo $row['urgency'];?></td>
                                             <td><?php echo $row['descr'];?></td>

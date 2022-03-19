@@ -43,11 +43,19 @@
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="inputEmail" name="id_no" type="text" placeholder="Enter your registra" required />
                                 <label for="inputEmail">National id number</label>
-                            </div>
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="inputEmail" name="department" type="text" placeholder="Enter your registra" required />
-                                <label for="inputEmail">Department</label>
-                            </div>
+                            </div>                            
+                            <div class="form-group">
+                                    <h6>Department *</h6>                                    
+								<select class="form-control" name="department" id="department" required>
+									<?php 
+                                        $class = $_GET['updateclass'];                                                                                                                          
+                                        $query=mysqli_query($con,"SELECT * from department");                                               										
+                                        while($row=mysqli_fetch_array($query))
+                                        {?>    
+                                            <option value="<?php echo $row['code'];?>"><?php echo $row['code'];?> --- <?php echo $row['name'];?></option>                                            
+                                        <?php }?>                                                                                     											                  					
+								</select>
+                                </div>
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="inputEmail" name="telephone" type="text" placeholder="Enter your registra" required />
                                 <label for="inputEmail">Telephone</label>

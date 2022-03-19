@@ -64,7 +64,7 @@
                                         <tr>
                                             <td><?php echo $cnt;?></td>
                                             <td><?php echo $row['trainer'];?></td>
-                                            <td><?php echo $row['class'];?></td>
+                                            <td><?php echo $row['subject'];?></td>
                                             <td><?php echo $row['type'];?></td>
                                             <td><?php echo $row['urgency'];?></td>
                                             <td><?php echo $row['descr'];?></td>

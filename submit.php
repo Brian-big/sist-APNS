@@ -10,14 +10,14 @@
         $regno = $_SESSION['regno'];
         $comment = $_POST['comment'];
         $taskid = $_GET['taskid'];
-        $sql = "INSERT INTO `submission` (`id`, `taskid`, `reg_no`, `time`, `comment`) VALUES (NULL, '$taskid', '$regno', current_timestamp(), '$comment');";
+        $sql = "INSERT INTO `submission` ( `taskid`, `reg_no`, `comment`) VALUES ( '$taskid', '$regno', '$comment');";
         // $query = "INSERT INTO `task` ( `type`, `urgency`, `class`, `decsr`, `trainer`) VALUES ('$type', '$urgency', '$class', '$descr', '$emp_no')";                
         if($con->query($sql)){
             $recipients = array();
             $recipientsQuery = "select `telephone` from `trainer`, `task`, submission WHERE `task`.`trainer` = `trainer`.`emp_no` AND `task`.`id` = `submission`.`taskid` AND `task`.`id` = '$taskid'";
             $res = mysqli_query($con, $recipientsQuery) or die(mysql_error());
 
-            $message = "New assignment added";
+            $message = 'New submission by ' .$regno. '. Comment: '.$comment;
             $from = "SIST Academic progress";
 
             while ($row = mysqli_fetch_assoc($res)) {
@@ -45,7 +45,7 @@
     <?php include "./includes/header.html" ?>
     <body class="sb-nav-fixed">
         <?php include "./includes/topnav.html" ?>
-        <?php include "./includes/sidenavtrainer.html" ?>
+        <?php include "./includes/sidenav.html" ?>
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">

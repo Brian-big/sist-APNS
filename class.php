@@ -98,7 +98,8 @@
                                         <tr>
                                             <th>#</th>
                                             <th>Code</th>
-                                            <th>Title</th> 
+                                            <th>Title</th>
+                                            <th>Class</th> 
                                             <th>Trainer</th>
                                             <!-- <th>Action</th>                                            -->
                                         </tr>
@@ -114,8 +115,9 @@
                                         
                                         <tr>
                                             <td><?php echo $cnt;?></td>
-                                            <td><?php echo $row['code'];?></td>
+                                            <td><?php echo $row['code'];?></td>                                            
                                             <td><?php echo $row['title'];?></td>
+                                            <td><?php echo $row['class'];?></td>
                                             <td><?php echo $row['trainer'];?></td>
                                             <!-- <td><i class="fa fa-eye" ></i> view</td> -->
                                             <!-- <td>                                                
