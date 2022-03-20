@@ -56,7 +56,16 @@
                          // $con = $conn;
                          $query = "SELECT * FROM task WHERE `id` = '$id'";
                          $ret = mysqli_query($con, $query);
-                         while ($row=mysqli_fetch_array($ret)) { ?>                                                                                                                                                                                                       
+                         while ($row=mysqli_fetch_array($ret)) { 
+                             $status = $row['status'];
+                             if($status !== "in progress"){ ?>
+                                <div class='alert bg-warning ' role='alert'>
+						            <i class='fa fa-lg fa-info'>&nbsp;</i> 
+						            <h3>Task <?php echo $row['status']; ?>! You cannot make submission</h4>
+						            <a href='#' class='pull-right'>
+						            <em class='fa fa-lg fa-close'>
+						            </em></a></div>
+                             <?php } else {?>                                                                                                                                                                                                      
                              <form method="POST">
                                 <h4>Initial Instructions</h4>
                                 <div class="form-floating mb-3">
@@ -77,12 +86,13 @@
                                 <div class="form-floating mb-3">
                                     <input class="form-control" id="inputEmail" name="comment" type="text" placeholder="Enter your registra" required/>
                                     <label for="inputEmail">Your comments</label>
-                                </div>     
-                             <?php } ?>
-                            
-                            <div class="d-flex align-items-center justify-content-between mt-4 mb-0">                                                
+                                </div> 
+                                <div class="d-flex align-items-center justify-content-between mt-4 mb-0">                                                
                                 <button class="btn btn-primary" type="submit" name="submit" value="<?php  echo $row['urgency'];?>">Submit</button>
-                            </div>
+                            </div>    
+                             <?php } } ?>
+                            
+                            
                         </form>
                                                     
                     </div>

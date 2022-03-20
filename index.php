@@ -46,7 +46,7 @@
                                     <tbody>
                                         <?php
                                             $class = $_SESSION['class'];
-                                            $query = "SELECT * FROM task, `subject` WHERE `class` = '$class' AND `task`.`subject` = `subject`.`code` ";
+                                            $query = "SELECT `task`.`id` as 'taskid', `task`.`type`, `task`.`urgency`, `task`.`descr`, `task`.`status`, `subject`.`code` FROM `task`, `subject` WHERE `class` = '$class' AND `task`.`subject` = `subject`.`code` ";
                                             $ret = mysqli_query($con, $query);
                                             $cnt = 1;
                                             while ($row = mysqli_fetch_array($ret)) {                                                                                            
@@ -60,7 +60,7 @@
                                             <td><?php echo $row['status'];?></td>
                                             <!-- <td><i class="fa fa-eye" ></i> view</td> -->
                                             <td>                                                
-                                                <a href="submit.php?taskid=<?php echo $row['id'];?>"><button type="submit" class="btn btn-sm btn-warning"> <i class="fa fa-upload" ></i> submit</button></a>                                                
+                                                <a href="submit.php?taskid=<?php echo $row['taskid'];?>"><button type="submit" class="btn btn-sm btn-warning"> <i class="fa fa-upload" ></i> submit</button></a>                                                
                                             </td>
                                         </tr>
                                         <?php $cnt=$cnt+1;}?>                                        
