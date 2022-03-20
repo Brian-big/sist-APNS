@@ -33,10 +33,10 @@
                                 <div class="col-xl-3 col-md-6">
                                     <div class="card bg-secondary text-white mb-4">
                                         <div class="card-header big">
-                                        <i class="fa fa-book"></i> <?php  echo $row['subject'];?></div>
+                                        <i class="fa fa-book"></i> <strong>Subject: </strong> <?php  echo $row['subject'];?></div>
                                         <div class="card-body">
-                                            <h3><?php  echo $row['type'];?></h3>
-                                            <p><?php  echo $row['descr'];?></p>
+                                            <h3><strong>Type: </strong><?php  echo $row['type'];?></h3>
+                                            <p><strong>Instructions: </strong><br><?php  echo $row['descr'];?></p>
                                         </div>
                                         <div class="card-footer d-flex align-items-center justify-content-between">
                                         <p class="small text-white"><strong>Status: </strong><?php  echo $row['status'];?></p>                                        
