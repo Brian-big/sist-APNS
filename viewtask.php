@@ -39,7 +39,8 @@
                                             <p><strong>Instructions: </strong><br><?php  echo $row['descr'];?></p>
                                         </div>
                                         <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <p class="small text-white"><strong>Status: </strong><?php  echo $row['status'];?></p>                                        
+                                        <p class="small text-white"><strong>Status: </strong></p>
+                                        <a href="updatetaskprogress.php?id=<?php echo $row['id'];?>"><button type="submit" class="btn btn-sm btn-warning"> <i class="fa fa-edit" ></i> <?php  echo $row['status'];?></button></a>
                                     </div>
                                 </div>
                                 </div>
