@@ -58,7 +58,7 @@
                          $ret = mysqli_query($con, $query);
                          while ($row=mysqli_fetch_array($ret)) { 
                              $status = $row['status'];
-                             if($status !== "in progress"){ ?>
+                             if($status !== "open"){ ?>
                                 <div class='alert bg-warning ' role='alert'>
 						            <i class='fa fa-lg fa-info'>&nbsp;</i> 
 						            <h3>Task <?php echo $row['status']; ?>! You cannot make submission</h4>

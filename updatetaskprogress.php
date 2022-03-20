@@ -65,8 +65,8 @@
                                 <form method="POST">
                                     <h4>Task status *</h4>
                                     <div data-toggle="buttons">                                
-                                        <input type="radio" name="status" value="in progress" id="pending" autocomplete="off" checked > In progress <br>                                
-                                        <input type="radio" name="status" value="completed" id="completedt" autocomplete="off"> Completed <br>                                
+                                        <input type="radio" name="status" value="open" id="pending" autocomplete="off" > Open <br>                                
+                                        <input type="radio" name="status" value="closed" id="completedt" autocomplete="off"> Closed <br>                                
                                         <input type="radio" name="status" value="cancelled" id="video" autocomplete="off"> Cancelled <br>                                
                                     </div>       
                                     <h4>Urgency *</h4>
