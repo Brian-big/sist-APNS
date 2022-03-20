@@ -63,7 +63,7 @@
                                 <input type="radio" name="type" value="notes" id="notes" autocomplete="off" checked > Notes <br>                                
                                 <input type="radio" name="type" value="assignment" id="assignment" autocomplete="off"> Assignment <br>                                
                                 <input type="radio" name="type" value="video" id="video" autocomplete="off"> Video on related topic <br>                                
-                                <input type="radio" name="types" value="other" id="other" autocomplete="off"> Other <br>
+                                <input type="radio" name="type" value="other" id="other" autocomplete="off"> Other <br>
                             </div>       
                             <h4>Urgency *</h4>
                             <div class="" data-toggle="buttons">
