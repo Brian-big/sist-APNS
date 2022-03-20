@@ -60,7 +60,7 @@
                              <form method="POST">
                                 <h4>Initial Instructions</h4>
                                 <div class="form-floating mb-3">
-                                    <input class="form-control" id="inputEmail" name="instructions" type="text" placeholder="Enter your registra" required value="<?php  echo $row['descr'];?>" />
+                                    <input class="form-control" id="inputEmail" name="instructions" type="text" placeholder="Enter your registra" readonly value="<?php  echo $row['descr'];?>" />
                                     <label for="inputEmail">Initial instructions</label>
                                 </div>
                                 <h4>Content type</h4>

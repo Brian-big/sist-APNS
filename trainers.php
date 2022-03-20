@@ -29,7 +29,7 @@
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
-                                In Progress Tasks
+                                All trainers
                             </div>
                             <div class="card-body">
                                 <table id="datatablesSimple" class="table table-striped table-hover table-bordered">
@@ -60,7 +60,9 @@
                                             <td><?php echo $row['id_no'];?></td>
                                             <td><?php echo $row['telephone'];?></td>
                                             <td><?php echo $row['department'];?></td>
-                                            <td><i class="fa fa-eye" ></i> view</td>                                            
+                                            <td>                                                
+                                                <a href="edittrainer.php?updateid=<?php echo $row['emp_no'];?>"><button type="submit" class="btn btn-sm btn-warning"> <i class="fa fa-edit" ></i> edit</button></a>                                                
+                                            </td>                                            
                                         </tr>
                                         <?php $cnt=$cnt+1;}?>                                        
                                     </tbody>

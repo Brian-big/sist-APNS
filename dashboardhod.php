@@ -45,12 +45,12 @@
                                         <tr>
                                             <th>#</th>
                                             <th>Trainer</th>
-                                            <th>Class</th>
+                                            <th>Subject</th>
                                             <th>Type</th> 
                                             <th>Urgency</th>
                                             <th>Description</th>
                                             <th>Status</th>
-                                            <th>Action</th>                                           
+                                            <!-- <th>Action</th>                                            -->
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -70,9 +70,9 @@
                                             <td><?php echo $row['descr'];?></td>
                                             <td><?php echo $row['status'];?></td>
                                             <!-- <td><i class="fa fa-eye" ></i> view</td> -->
-                                            <td>                                                                                                
-                                                <a href="edittrainee.php?updatereg=<?php echo $row['reg_no'];?>"><button type="submit" class="btn btn-sm btn-secondary"> <i class="fa fa-eye" ></i> view</button></a>
-                                            </td>
+                                            <!-- <td>                                                                                                 -->
+                                                <!-- <a href="edittrainee.php?updatereg=<?php echo $row['reg_no'];?>"><button type="submit" class="btn btn-sm btn-secondary"> <i class="fa fa-eye" ></i> view</button></a> -->
+                                            <!-- </td> -->
                                         </tr>
                                         <?php $cnt=$cnt+1;}?>                                        
                                     </tbody>

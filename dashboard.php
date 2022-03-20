@@ -61,7 +61,7 @@
                                             <th>Type</th> 
                                             <th>Urgency</th>
                                             <th>Description</th>
-                                            <th>Status</th>                                            
+                                            <!-- <th>Status</th>                                             -->
                                             <th>Action</th>                                           
                                         </tr>
                                     </thead>
@@ -80,11 +80,11 @@
                                             <td><?php echo $row['type'];?></td>
                                             <td><?php echo $row['urgency'];?></td>
                                             <td><?php echo $row['descr'];?></td>
-                                            <td><?php echo $row['status'];?></td>
+                                            <!-- <td><?php echo $row['status'];?></td> -->
                                             <!-- <td><i class="fa fa-eye" ></i> view</td> -->
                                             <td>                                                
-                                                <a href="edittrainee.php?updatereg=<?php echo $row['reg_no'];?>"><button type="submit" class="btn btn-sm btn-warning"> <i class="fa fa-edit" ></i> update</button></a>
-                                                <a href="edittrainee.php?updatereg=<?php echo $row['reg_no'];?>"><button type="submit" class="btn btn-sm btn-secondary"> <i class="fa fa-eye" ></i> view</button></a>
+                                                <!-- <a href="edittrainee.php?updatereg=<?php echo $row['reg_no'];?>"><button type="submit" class="btn btn-sm btn-warning"> <i class="fa fa-edit" ></i> update</button></a> -->
+                                                <a href="edittrainee.php?updatereg=<?php echo $row['reg_no'];?>"><button type="submit" class="btn btn-sm btn-warning"> <i class="fa fa-eye" ></i> view</button></a>
                                             </td>
                                         </tr>
                                         <?php $cnt=$cnt+1;}?>                                        
