@@ -61,7 +61,7 @@
                                             <th>Type</th> 
                                             <th>Urgency</th>
                                             <th>Description</th>
-                                            <!-- <th>Status</th>                                             -->
+                                            <th>Status</th>                                            
                                             <th>Action</th>                                           
                                         </tr>
                                     </thead>
@@ -80,7 +80,7 @@
                                             <td><?php echo $row['type'];?></td>
                                             <td><?php echo $row['urgency'];?></td>
                                             <td><?php echo $row['descr'];?></td>
-                                            <!-- <td><?php echo $row['status'];?></td> -->
+                                            <td><?php echo $row['status'];?></td>
                                             <!-- <td><i class="fa fa-eye" ></i> view</td> -->
                                             <td>                                                                                                                                               
                                                 <a href="viewtask.php?id=<?php echo $row['id'];?>"><button type="submit" class="btn btn-sm btn-warning"> <i class="fa fa-eye" ></i> view</button></a>

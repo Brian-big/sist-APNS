@@ -59,8 +59,7 @@
                                             <th>Student</th>
                                             <th>Type</th> 
                                             <th>Urgency</th>
-                                            <th>Description</th>
-                                            <th>Status</th>
+                                            <th>Description</th>                                            
                                             <th>Comments</th>
                                             <th>Action</th>                                           
                                         </tr>
@@ -79,8 +78,7 @@
                                             <td><?php echo $row['reg_no'];?></td>
                                             <td><?php echo $row['type'];?></td>
                                             <td><?php echo $row['urgency'];?></td>
-                                            <td><?php echo $row['descr'];?></td>
-                                            <td><?php echo $row['status'];?></td>
+                                            <td><?php echo $row['descr'];?></td>                                            
                                             <td><?php echo $row['comment'];?></td>
                                             <!-- <td><i class="fa fa-eye" ></i> view</td> -->
                                             <td>                                                                                                
