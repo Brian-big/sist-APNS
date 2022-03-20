@@ -12,36 +12,33 @@
         $descr = $_POST['descr'];        
         $urgency = $_POST['urgency'];
         $status = $_POST['status'];       
-        $sql = "UPDATE `task` SET `descr` = '$descr', `status` = '$status' WHERE `task`.`id` = '$id'";
-        // $query = "INSERT INTO `task` ( `type`, `urgency`, `class`, `decsr`, `trainer`) VALUES ('$type', '$urgency', '$class', '$descr', '$emp_no')";                
+        $sql = "UPDATE `task` SET `descr` = '$descr', `status` = '$status' WHERE `task`.`id` = '$id'";        
         if($con->query($sql)){
-            header("location:dashboard.php");
-            // $classquery = "SELECT `class` FROM `subject` WHERE `code` = '$subject'";
-            
-            // $res1 = mysqli_query($con, $classquery);            
-            // while ($row = mysqli_fetch_assoc($res1)){
-            //     $class = $row['class'];
-            //     $recipientsQuery = "select `telephone` from `student` WHERE `class` = '$class'";
-            //     $res = mysqli_query($con, $recipientsQuery) or die(mysql_error());
+            $sql1 = "SELECT `task`.`subject`, `task`.`id` , `subject`.`class`, `subject`.`code` FROM `task`, `subject` WHERE `task`.`id` = '$id' AND `task`.`subject` = `subject`.code`";
+            $ret = mysqli_query($con, $sql1);
+            while ($row_ = mysqli_fetch_array($ret)) {
+                $class = $row_['class'];
+                $recipientsQuery = "select `telephone` from `student` WHERE `class` = '$class'";
+                $res = mysqli_query($con, $recipientsQuery) or die(mysql_error());
                 
-            //     $message = $subject. ': New '.$type. ' added. Description: '.$descr. ' submission: ' .$urgency;
-            //     $from = "SIST Academic progress";
+                $message = $row_['subject']. ': status changed: '.$status. '. Submission: ' .$urgency;
+                $from = "SIST Academic progress";
     
-            //     while ($row = mysqli_fetch_assoc($res)) {
-            //         $recipient = $row["telephone"];                 
-            //         try {
-            //             $result = $sms->send([
-            //             'to'      => $recipient,
-            //             'message' => $message,
-            //             // 'from'    => $from
-            //             ]);
-            //             print_r($result);
-            //         } catch (Exception $e) { 
-            //             echo "Error: ".$e->getMessage();     
-            //         }
-            //     }
-            //     header("location:dashboard.php");
-            // }           
+                while ($row = mysqli_fetch_assoc($res)) {
+                    $recipient = $row["telephone"];                 
+                    try {
+                        $result = $sms->send([
+                        'to'      => $recipient,
+                        'message' => $message,
+                        // 'from'    => $from
+                        ]);
+                        print_r($result);
+                    } catch (Exception $e) { 
+                        echo "Error: ".$e->getMessage();     
+                    }
+                }
+            }
+            header("location:dashboard.php");                    
         }    
     
     }
