@@ -14,9 +14,10 @@
         $status = $_POST['status'];       
         $sql = "UPDATE `task` SET `descr` = '$descr', `status` = '$status' WHERE `task`.`id` = '$id'";        
         if($con->query($sql)){
-            $sql1 = "SELECT `task`.`subject`, `task`.`id` , `subject`.`class`, `subject`.`code` FROM `task`, `subject` WHERE `task`.`id` = '$id' AND `task`.`subject` = `subject`.code`";
+            $sql1 = "SELECT `task`.`subject`, `task`.`id` , `subject`.`class`, `subject`.`code` FROM `task`, `subject` WHERE `task`.`id` = '$id' AND `task`.`subject` = `subject`.`code`";
             $ret = mysqli_query($con, $sql1);
-            while ($row_ = mysqli_fetch_array($ret)) {
+            while ($row_ = mysqli_fetch_assoc($ret)) {
+                echo "record found";
                 $class = $row_['class'];
                 $recipientsQuery = "select `telephone` from `student` WHERE `class` = '$class'";
                 $res = mysqli_query($con, $recipientsQuery) or die(mysql_error());
