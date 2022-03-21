@@ -9,18 +9,19 @@
     if($_SERVER["REQUEST_METHOD"] == "POST")
     {
         $sn=$_SESSION['login'];
-        $first=$_POST['email'];
+        $first=$_POST['first'];
         $second=$_POST['second'];
         
-        if ($first != $second) {
+        if ($first !== $second) {
             echo "<script>alert('Passwords don't match!');</script>";
-        }
-        $query=mysqli_query($con,"UPDATE `user` set Password='$second'  where  sno='$sn'");
-        if($query){
-	        echo "<script>alert('Password Changed!');</script>";
-	        session_destroy();
-	        header("location:javascript://history.go(-1)");            
-        }
+        }else {
+            $query= "UPDATE `user` set `password`='$second'  where `sno`='$sn'";
+            if($con->query($query)){
+                echo "<script>alert('Password Changed!');</script>";
+                session_destroy();
+                header('location:' .$_SERVER['HTTP_REFERER']);            
+            }
+        }        
     }
 ?>
 <!DOCTYPE html>
@@ -36,18 +37,18 @@
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header"><h3 class="text-center font-weight-light my-4">Reset password</h3></div>
                                     <div class="card-body">
-                                        <form>
+                                        <form method="POST">
                                             <div class="row mb-3">                                            
                                             <div class="form-floating mb-3">
-                                                <input class="form-control" id="inputEmail" name="first" type="password" placeholder="name@example.com" />
+                                                <input class="form-control" id="inputEmail" name="first" type="password" placeholder="name@example.com" required />
                                                 <label for="inputEmail">New password</label>
                                             </div>
                                             <div class="form-floating mb-3">
-                                                <input class="form-control" id="inputEmail" name="second" type="password" placeholder="name@example.com" />
+                                                <input class="form-control" id="inputEmail" name="second" type="password" placeholder="name@example.com" required />
                                                 <label for="inputEmail">Confirm</label>
                                             </div>                                            
                                             <div class="mt-4 mb-0">
-                                                <button class="btn btn-primary btn-block" type="submit" href="login.html">Change password</buttonv>
+                                                <button class="btn btn-primary btn-block" type="submit" >Change password</button>
                                             </div>
                                         </form>
                                     </div>
