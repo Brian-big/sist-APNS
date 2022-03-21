@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($count == 1) {
         if ($row['user_type'] == 0) {
             $_SESSION['login'] = $row['sno'];
-            header("location:index.php");
+            header("location:dashboardstudent.php");
         }
         if ($row['user_type'] == 1) {
             $_SESSION['login'] = $row['sno'];

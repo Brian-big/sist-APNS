@@ -1,84 +1,51 @@
-<?php  
-    session_start();
-    require('db/dbconfig.php');
-    require('db/class.php');
-    if (!isset($_SESSION['login'])){ 
-        header('location:login.php');
-    }
-?>
 <!DOCTYPE html>
 <html lang="en">
-    <?php include "./includes/header.html" ?>
-    <body class="sb-nav-fixed">
-        <?php include "./includes/topnav.html" ?>
-        <?php include "./includes/sidenav.html" ?>
-            <div id="layoutSidenav_content">
-                <main>
-                    <div class="container-fluid px-4">
-                        <h1 class="mt-4">Student's Dashboard</h1>
-                        <?php
-                            $regno = $_SESSION['regno'];
-                            $query = "SELECT `name` FROM student WHERE `reg_no` = '$regno'";
-                            $ret = mysqli_query($con, $query);                            
-                            while ($row = mysqli_fetch_array($ret)) {                                                                                            
-                            ?>
-                            <ol class="breadcrumb mb-4">
-                                <li class=""><?php echo $row['name'];?></li>
-                            </ol>
-                        <?php }?>                                                      
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <i class="fas fa-table me-1"></i>
-                                Tasks
-                            </div>
-                            <div class="card-body">
-                            <table id="datatablesSimple" class="table table-striped table-hover table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>                                            
-                                            <th>Type</th> 
-                                            <th>Urgency</th>
-                                            <th>Description</th>
-                                            <th>Status</th>
-                                            <th>Action</th>                                           
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                            $class = $_SESSION['class'];
-                                            $query = "SELECT `task`.`id` as 'taskid', `task`.`type`, `task`.`urgency`, `task`.`descr`, `task`.`status`, `subject`.`code` FROM `task`, `subject` WHERE `class` = '$class' AND `task`.`subject` = `subject`.`code` ";
-                                            $ret = mysqli_query($con, $query);
-                                            $cnt = 1;
-                                            while ($row = mysqli_fetch_array($ret)) {                                                                                            
-                                        ?>
-                                        
-                                        <tr>
-                                            <td><?php echo $cnt;?></td>                                            
-                                            <td><?php echo $row['type'];?></td>
-                                            <td><?php echo $row['urgency'];?></td>
-                                            <td><?php echo $row['descr'];?></td>
-                                            <td><?php echo $row['status'];?></td>
-                                            <!-- <td><i class="fa fa-eye" ></i> view</td> -->
-                                            <td>                                                
-                                                <a href="submit.php?taskid=<?php echo $row['taskid'];?>"><button type="submit" class="btn btn-sm btn-warning"> <i class="fa fa-upload" ></i> submit</button></a>                                                
-                                            </td>
-                                        </tr>
-                                        <?php $cnt=$cnt+1;}?>                                        
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </main>
-                <?php include('./includes/footer.html') ?>
-            </div>
-        </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="assets/demo/chart-area-demo.js"></script>
-        <script src="assets/demo/chart-bar-demo.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-        <script src="js/datatables-simple-demo.js"></script>
-    </body>
+<?php include "./includes/header.html" ?>
+<body>
+<main>
+  <?php include "./includes/nav.html" ?>
+  <div class="jumbotron text-center header-custom text-white" style="margin-bottom:0">
+  <img src="images/logo.png" alt="" srcset="">
+  <h1>Sang'alo Institute of Science and Technology</h1>
+  <h3>Academic Progress Notification System</h3> 
+  </div>  
+  <div class="card shadow-lg border-0 rounded-lg mt-5">
+    <div class="card-body">                        
+      <h3>WELCOME TO ACADEMIC PROGRESS NOTIFICATION MANAGEMENT INFORMATION SYSTEM</h3>
+      <p class="lead">the  text below contains the instructions of how to use the system.</p>
+      
+    </div>
+  </div>
+  <br> 
+  <h4 align="center">SECTIONS OF THIS SYSTEM</h4>      
+  <div class="card shadow-lg border-0 rounded-lg mt-5">
+    <div class="card-body">     
+      <p><strong>1. Trainers </strong></p>.
+      <p> This are teachers who teach at the institute.They are  players when it comes to usage of this system because, they are the  who are responsible for informing trainees when they upload notes and assignment on the LMS Learning Management </p></p>                         
+    </div>
+  </div>
+  <div class="card shadow-lg border-0 rounded-lg mt-5">
+    <div class="card-body">
+      <p><strong>2. TRAINEES </strong></p>.
+      <p> These are students who pursues different courses  within the Institute/College, they are responsible by ensuring that they study notes send by trainess and also carry out any assignments from the Trainers. they work  on the assignments given by respective Trainers and status of the assignments done is made available to the Respective Trainer who posted the assignment for students to carry out. </p>
+    </div>
+  </div>
+  <div class="card shadow-lg border-0 rounded-lg mt-5">
+    <div class="card-body">
+      <p><strong>3. Admin </strong></p>.
+      <p> This is school administrator in charge of the system. He/ she is previlaged to edit, remove or add trainers and Trainees. He is in charge of creating departments, classes and subjects </p>
+    </div>
+  </div>
+  <div class="card shadow-lg border-0 rounded-lg mt-5">
+    <div class="card-body">
+      <hr class="hr1"> 
+      <h2>GETTING STARTED</h2>
+      <p> TO LOGIN<li><a href="login.php" class="btn btn-light btn-radius btn-brd grd1 effect-1 butn">CLICK HERE</a></li></p>
+      <p><storng> NOTE:</p></storng>
+      <p> 1. All Trainers  and trainees will be registered by the system admin  </p>            
+    </div>
+  </div>
+  <?php include('./includes/footer.html') ?>  
+</main>
+</body>
 </html>

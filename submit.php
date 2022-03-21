@@ -33,7 +33,7 @@
                     echo "Error: ".$e->getMessage();     
                 }
             }
-            header("location:index.php");   
+            header("location:submissionsstudent.php");   
         }    
            
 }
