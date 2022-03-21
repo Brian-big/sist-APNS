@@ -92,6 +92,12 @@
                                 <input class="form-control" id="inputEmail" name="descr" type="text" placeholder="Enter your registra" required />
                                 <label for="inputEmail">Enter description for the task</label>
                             </div>
+
+                            <h4>Attach a file </h4>
+                                <div class="form-floating mb-3">                                   
+                                    <input type="file" name="file" class="form-control" id="customFile" />
+                                    <label class="form-label" for="customFile">Supported formats(*.doc, *.docx, *.pdf)</label>
+                                </div>
                             
                             <div class="d-flex align-items-center justify-content-between mt-4 mb-0">                                                
                                 <button class="btn btn-primary" type="submit" name="submit">Submit</button>

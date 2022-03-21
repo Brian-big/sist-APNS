@@ -82,6 +82,11 @@
                                     <input class="form-control" id="inputEmail" name="urgency" type="text" placeholder="Enter your registra" readonly value="<?php  echo $row['urgency'];?>" />
                                     <label for="inputEmail">Submit period</label>
                                 </div>
+                                <h4>Attach a file </h4>
+                                <div class="form-floating mb-3">                                   
+                                    <input type="file" name="file" class="form-control" id="customFile" />
+                                    <label class="form-label" for="customFile">Supported formats(*.doc, *.docx, *.pdf)</label>
+                                </div>
                                 <h4>Comment *</h4> 
                                 <div class="form-floating mb-3">
                                     <input class="form-control" id="inputEmail" name="comment" type="text" placeholder="Enter your registra" required/>
